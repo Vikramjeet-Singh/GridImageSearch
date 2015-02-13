@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.example.vikramjeet.adapters.ImageAdapter;
+import com.example.vikramjeet.fragments.SettingsFilterDialog;
 import com.example.vikramjeet.gridimagesearch.R;
 import com.example.vikramjeet.helpers.EndlessScrollListener;
 import com.example.vikramjeet.models.Filter;
@@ -32,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class ImageSearchActivity extends ActionBarActivity {
+public class ImageSearchActivity extends ActionBarActivity implements SettingsFilterDialog.SettingsFilterDialogListener {
     private final int REQUEST_CODE = 200;
     public static final String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8&q=";
     private EditText etQuery;
@@ -103,12 +105,10 @@ public class ImageSearchActivity extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            // Extract name value from result extras
-            searchFilter  =  (Filter) data.getSerializableExtra("Filter");
-//            // Toast the name to display temporarily on screen
-//            Toast.makeText(this, filter.getImageSize(), Toast.LENGTH_SHORT).show();
-        }
+//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+//            // Extract name value from result extras
+//            searchFilter  =  (Filter) data.getSerializableExtra("Filter");
+//        }
     }
 
     public String applyFilters(String url, String query) {
@@ -131,7 +131,6 @@ public class ImageSearchActivity extends ActionBarActivity {
             }
         }
 
-//        Toast.makeText(ImageSearchActivity.this, url, Toast.LENGTH_SHORT).show();
         return url;
     }
 
@@ -147,19 +146,16 @@ public class ImageSearchActivity extends ActionBarActivity {
             public boolean onQueryTextSubmit(String query) {
                 // Create Network client
                 httpClient = new AsyncHttpClient();
-
                 // Create search  url
 //                searchURL = url + query;
                 searchURL = applyFilters(url, query);
-
 
                 if(isNetworkAvailable()) {
                     // Fetch images
                     fetchImages(searchURL);
                 }
 
-
-                return true;
+                  return true;
             }
 
             @Override
@@ -193,11 +189,14 @@ public class ImageSearchActivity extends ActionBarActivity {
     // Helper methods
 
     private void showSettings() {
-        // Create an Intent
-        Intent settingsIntent = new Intent(ImageSearchActivity.this, SettingsActivity.class);
-//        settingsIntent.putExtra("Filter", searchFilter);
-        // Start the activity
-        startActivityForResult(settingsIntent, REQUEST_CODE);
+//        // Create an Intent
+//        Intent settingsIntent = new Intent(ImageSearchActivity.this, SettingsActivity.class);
+////        settingsIntent.putExtra("Filter", searchFilter);
+//        // Start the activity
+//        startActivityForResult(settingsIntent, REQUEST_CODE);
+        FragmentManager fm = getSupportFragmentManager();
+        SettingsFilterDialog filterDialog = SettingsFilterDialog.newInstance("Advanced Filters");
+        filterDialog.show(fm, "fragment_settings_filter_dialog");
     }
 
     public void fetchImages(String url) {
@@ -270,4 +269,11 @@ public class ImageSearchActivity extends ActionBarActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
+
+    // SettingsFilterDialogListener method
+    public void onFinishFilterDialog(Filter filter) {
+        // set filter value
+        searchFilter = filter;
+    }
+
 }
