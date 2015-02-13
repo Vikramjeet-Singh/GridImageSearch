@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.example.vikramjeet.adapters.ImageAdapter;
@@ -37,7 +36,7 @@ import java.util.ArrayList;
 public class ImageSearchActivity extends ActionBarActivity implements SettingsFilterDialog.SettingsFilterDialogListener {
     private final int REQUEST_CODE = 200;
     public static final String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8&q=";
-    private EditText etQuery;
+//    private EditText etQuery;
     private StaggeredGridView gvResults;
     private ArrayList<Image> images;
     private ImageAdapter adapter;
