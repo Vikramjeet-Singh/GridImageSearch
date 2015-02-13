@@ -29,6 +29,7 @@ import com.example.vikramjeet.models.Filter;
  */
 public class SettingsFilterDialog extends DialogFragment implements TextView.OnClickListener {
 
+    private final int kDefaultSelection = 0;
     private String imageSize;
     private String imageColor;
     private String imageType;
@@ -77,10 +78,6 @@ public class SettingsFilterDialog extends DialogFragment implements TextView.OnC
         cancelButton = (Button) view.findViewById(R.id.btnCancel);
         cancelButton.setOnClickListener(this);
 
-
-//        String title = getArguments().getString("title");
-//        getDialog().setTitle("title");
-
         // Load spinner view
         Spinner spinnerImageSize = (Spinner) view.findViewById(R.id.spinnerImageSize);
         // Create an ArrayAdapter using the string array using custom spinner layout
@@ -94,7 +91,7 @@ public class SettingsFilterDialog extends DialogFragment implements TextView.OnC
         spinnerImageSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageSize = (String) parent.getItemAtPosition(position);
                 }
             }
@@ -119,7 +116,7 @@ public class SettingsFilterDialog extends DialogFragment implements TextView.OnC
         spinnerColorFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageColor = (String) parent.getItemAtPosition(position);
                 }
             }
@@ -143,7 +140,7 @@ public class SettingsFilterDialog extends DialogFragment implements TextView.OnC
         spinnerImageSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageType = (String) parent.getItemAtPosition(position);
                 }
             }

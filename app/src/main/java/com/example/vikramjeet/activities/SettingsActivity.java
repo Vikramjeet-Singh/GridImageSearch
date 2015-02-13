@@ -17,6 +17,7 @@ import com.example.vikramjeet.models.Filter;
 
 public class SettingsActivity extends ActionBarActivity {
 
+    private final int kDefaultSelection = 0;
     private String imageSize;
     private String imageColor;
     private String imageType;
@@ -46,7 +47,7 @@ public class SettingsActivity extends ActionBarActivity {
         spinnerImageSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageSize = (String) parent.getItemAtPosition(position);
                 }
             }
@@ -71,7 +72,7 @@ public class SettingsActivity extends ActionBarActivity {
         spinnerColorFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageColor = (String) parent.getItemAtPosition(position);
                 }
             }
@@ -95,7 +96,7 @@ public class SettingsActivity extends ActionBarActivity {
         spinnerImageSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
+                if (position > kDefaultSelection) {
                     imageType = (String) parent.getItemAtPosition(position);
                 }
             }

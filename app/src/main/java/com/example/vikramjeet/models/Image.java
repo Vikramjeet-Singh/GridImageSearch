@@ -19,6 +19,7 @@ public class Image implements Serializable {
     private String title;
     private String height;
     private String width;
+    private String titleNoFormatting;
 
     public Image(JSONObject json) {
         try {
@@ -27,6 +28,8 @@ public class Image implements Serializable {
             title = json.getString("title");
             height = json.getString("height");
             width = json.getString("width");
+            titleNoFormatting = json.getString("titleNoFormatting");
+
         } catch(JSONException e) {
             Log.e("Image", "Failed to parse json in constructor");
             e.printStackTrace();
@@ -68,6 +71,10 @@ public class Image implements Serializable {
 
     public String getWidth() {
         return width;
+    }
+
+    public String getTitleNoFormatting() {
+        return titleNoFormatting;
     }
 
 }

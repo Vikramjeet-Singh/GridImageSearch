@@ -34,9 +34,9 @@ import java.util.ArrayList;
 
 
 public class ImageSearchActivity extends ActionBarActivity implements SettingsFilterDialog.SettingsFilterDialogListener {
+    private  final int kNumberOfImagesPerPage = 8;
     private final int REQUEST_CODE = 200;
-    public static final String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8&q=";
-//    private EditText etQuery;
+    private final String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8&q=";
     private StaggeredGridView gvResults;
     private ArrayList<Image> images;
     private ImageAdapter adapter;
@@ -104,10 +104,7 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-//            // Extract name value from result extras
-//            searchFilter  =  (Filter) data.getSerializableExtra("Filter");
-//        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public String applyFilters(String url, String query) {
@@ -146,7 +143,6 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
                 // Create Network client
                 httpClient = new AsyncHttpClient();
                 // Create search  url
-//                searchURL = url + query;
                 searchURL = applyFilters(url, query);
 
                 if(isNetworkAvailable()) {
@@ -177,6 +173,7 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
             //noinspection SimplifiableIfStatement
             case R.id.action_settings:
                 return true;
+            // Settings option selected
             case R.id.miFilters:
                 showSettings();
                 return true;
@@ -188,11 +185,7 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
     // Helper methods
 
     private void showSettings() {
-//        // Create an Intent
-//        Intent settingsIntent = new Intent(ImageSearchActivity.this, SettingsActivity.class);
-////        settingsIntent.putExtra("Filter", searchFilter);
-//        // Start the activity
-//        startActivityForResult(settingsIntent, REQUEST_CODE);
+        // Creating Dialog Fragment
         FragmentManager fm = getSupportFragmentManager();
         SettingsFilterDialog filterDialog = SettingsFilterDialog.newInstance("Advanced Filters");
         filterDialog.show(fm, "fragment_settings_filter_dialog");
@@ -211,16 +204,16 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
                     imageListJSON = response.getJSONObject("responseData").getJSONArray("results");
                     // Cleat list for the initial search (not for pagination)
                     images.clear();
-//                    Add images to the list
-//                    images.addAll(Image.fromJSONArray(imageListJSON));
-////                    Refresh data by notifying adapter
-//                    adapter.notifyDataSetChanged();
+                    // Add images to the list
+                    // images.addAll(Image.fromJSONArray(imageListJSON));
+                    // Refresh data by notifying adapter
+                    // adapter.notifyDataSetChanged();
 
                     // Using another approach of updating adapter itself and hence it will trigger the change to datasource
                     adapter.addAll(Image.fromJSONArray(imageListJSON));
 
                 } catch (JSONException e) {
-//                    Log.e("ImageSearchActivity", "Failed to parse response json");
+                    Log.e("ImageSearchActivity", "Failed to parse response json");
                     e.printStackTrace();
                 }
             }
@@ -234,7 +227,7 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
     }
 
     public void fetchImagesWhileScrolling(String url, int page) {
-        int offset = 8*(page-1);
+        int offset = kNumberOfImagesPerPage*(page-1);
         String finalURL = url + "&start=" + offset;
 
         httpClient.get(finalURL, new JsonHttpResponseHandler() {
@@ -262,6 +255,7 @@ public class ImageSearchActivity extends ActionBarActivity implements SettingsFi
         });
     }
 
+    // Check if Internet is available
     private Boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
