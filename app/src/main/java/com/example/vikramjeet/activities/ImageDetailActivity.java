@@ -61,7 +61,7 @@ public class ImageDetailActivity extends ActionBarActivity {
 
         // Share option selected
         if (id == R.id.miShare) {
-//            shareImage();
+            shareImage();
             return true;
         }
         //  if (id == R.id.home) {
@@ -72,15 +72,20 @@ public class ImageDetailActivity extends ActionBarActivity {
     }
 
     public void shareImage() {
+        // Get drawable for the image view
         Drawable mDrawable = ivImageDetail.getDrawable();
+        // Get Bitmap from the drawable
         Bitmap mBitmap = ((BitmapDrawable)mDrawable).getBitmap();
 
+        // path where the image is being inserted
         String path = MediaStore.Images.Media.insertImage(ImageDetailActivity.this.getContentResolver(),
                 mBitmap, "Image description", null);
 
+        // get URI from the path
         Uri uri = Uri.parse(path);
 
-        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        // Email intent
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
         emailIntent.setType("image/png");
         startActivity(Intent.createChooser(emailIntent, "Send mail..."));

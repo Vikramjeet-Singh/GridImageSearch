@@ -29,10 +29,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vikramjeet.activities.ImageSearchActivity" />
         </activity>
-        <activity
-            android:name="com.example.vikramjeet.activities.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
     </application>
 
 </manifest>
