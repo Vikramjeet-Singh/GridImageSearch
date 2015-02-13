@@ -61,7 +61,7 @@ public class ImageDetailActivity extends ActionBarActivity {
 
         // Share option selected
         if (id == R.id.miShare) {
-            shareImage();
+//            shareImage();
             return true;
         }
         //  if (id == R.id.home) {
