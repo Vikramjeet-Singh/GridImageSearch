@@ -4,6 +4,7 @@
     <string name="app_name">GridImageSearch</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings/Filter</string>
+    <string name="action_share">Share</string>
     <string name="search_label">Search</string>
     <string name="search_prompt">Enter search query</string>
     <string name="image_title">Image Title</string>

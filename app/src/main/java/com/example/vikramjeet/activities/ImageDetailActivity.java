@@ -23,22 +23,12 @@ public class ImageDetailActivity extends ActionBarActivity {
         // Find imageView
         TouchImageView ivImageDetail = (TouchImageView) findViewById(R.id.ivImageDetail);
         // Load the image into image view using picasso
-//        Picasso.with(this)
-//                .load(imageUrl)
-//                .resize(200, 200)
-//                .centerCrop()
-//                .placeholder(R.drawable.image_placeholder)
-//                .error(R.drawable.image_error)
-//                .into(ivImageDetail);
-
         Picasso.with(this)
                 .load(imageUrl)
                 .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.image_error)
                 .resize(Integer.parseInt(image.getWidth()), Integer.parseInt(image.getHeight()))
                 .into(ivImageDetail);
-
-
     }
 
 
