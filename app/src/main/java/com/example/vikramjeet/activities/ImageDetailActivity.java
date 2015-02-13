@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.example.vikramjeet.gridimagesearch.R;
+import com.example.vikramjeet.helpers.TouchImageView;
 import com.example.vikramjeet.models.Image;
 import com.squareup.picasso.Picasso;
 
@@ -21,7 +21,7 @@ public class ImageDetailActivity extends ActionBarActivity {
         // Get image Url
         String imageUrl = image.getUrl();
         // Find imageView
-        ImageView ivImageDetail = (ImageView) findViewById(R.id.ivImageDetail);
+        TouchImageView ivImageDetail = (TouchImageView) findViewById(R.id.ivImageDetail);
         // Load the image into image view using picasso
 //        Picasso.with(this)
 //                .load(imageUrl)
