@@ -22,6 +22,7 @@ Time spent: 16-18 hours spent in total Completed user stories:
     Advanced: Did some error handling, check if internet is available, handle error cases, network failure
     Advanced: Used the ActionBar SearchView as the query box instead of an EditText
     Advanced: Replaced Filter Settings Activity with a lightweight modal overlay
+    Advanced: User can share an image to their friends or email it to themselves
     Advanced: Tried to improve the user interface and experiment with image assets and/or styling and coloring
     
     Bonus: Used the StaggeredGridView to display improve the grid of image results
