@@ -28,4 +28,8 @@ Time spent: 16-18 hours spent in total Completed user stories:
     Bonus: Used the StaggeredGridView to display improve the grid of image results
     Bonus: User can zoom or pan images displayed in full-screen detail view
 
+Walkthrough of all the user stories:
+
+![](https://github.com/Vikramjeet-Singh/GridImageSearch/blob/master/GridImageSearch_Walkthrough.gif)
+
 

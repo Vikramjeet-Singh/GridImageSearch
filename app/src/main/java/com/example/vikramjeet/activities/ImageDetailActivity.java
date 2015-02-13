@@ -37,8 +37,8 @@ public class ImageDetailActivity extends ActionBarActivity {
                 .error(R.drawable.image_error)
                 .resize(Integer.parseInt(image.getWidth()), Integer.parseInt(image.getHeight()))
                 .into(ivImageDetail);
+        
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
