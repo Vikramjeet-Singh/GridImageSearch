@@ -6,8 +6,12 @@
     <string name="action_settings">Settings/Filter</string>
     <string name="action_share">Share</string>
     <string name="search_label">Search</string>
+    <string name="save_btn_title">Save</string>
+    <string name="cancel_btn_title">Cancel</string>
     <string name="search_prompt">Enter search query</string>
+    <string name="site_prompt">Enter site name</string>
     <string name="image_title">Image Title</string>
+    <string name="item_placeholder">Item</string>
     <string name="title_activity_image_detail">ImageDetailActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
