@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 
+import com.etsy.android.grid.StaggeredGridView;
 import com.example.vikramjeet.adapters.ImageAdapter;
 import com.example.vikramjeet.gridimagesearch.R;
 import com.example.vikramjeet.helpers.EndlessScrollListener;
@@ -36,13 +36,14 @@ public class ImageSearchActivity extends ActionBarActivity {
     private final int REQUEST_CODE = 200;
     public static final String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=8&q=";
     private EditText etQuery;
-    private GridView gvResults;
+    private StaggeredGridView gvResults;
     private ArrayList<Image> images;
     private ImageAdapter adapter;
     private String searchURL;
     private AsyncHttpClient httpClient;
     private SearchView searchView;
     private Filter searchFilter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class ImageSearchActivity extends ActionBarActivity {
 
 
     private void setupViews() {
-        gvResults = (GridView) findViewById(R.id.gvResults);
+        gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
         // Set up onClick handler
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
